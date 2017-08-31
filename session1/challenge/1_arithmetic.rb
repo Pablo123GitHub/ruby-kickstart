@@ -10,4 +10,7 @@
 
 def arithmetic1(n)
   # the code for this method goes in here
+  result = n*5 -20
+  return result
 end
+
