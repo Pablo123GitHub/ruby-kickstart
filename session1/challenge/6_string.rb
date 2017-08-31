@@ -7,5 +7,24 @@
 # odds_and_evens("abcdefg",true)    # => "bdf"
 # odds_and_evens("abcdefg",false)   # => "aceg"
 
-def odds_and_evens(string, return_odds)
+def odds_and_evens(string, return_odds)  
+  
+  resultArr  = []
+  
+ if return_odds
+   
+ string.split("").each_index do |x|
+  resultArr.push(string[x]) if x %2 != 0
+  
+end
+else 
+   string.split("").each_index do |x|
+  resultArr.push(string[x]) if x %2 === 0
+  
+end
+ end 
+
+return resultArr.join("")
+
+
 end
