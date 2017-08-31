@@ -9,5 +9,19 @@
 # grade(4,  true)   # => "C"
 # grade(15, true)   # => "B"
 
+
 def grade(num_books, reads_books)
+  marks = [ 'A', 'B', 'C', 'D']
+  index = 0
+  
+  if num_books < 10 
+    index = 3
+  elsif num_books >= 10 && num_books <= 20 
+    index = 2
+  else 
+    index = 1     
+  end 
+  
+  return reads_books ? marks[index -1] : marks[index]
+  
 end
