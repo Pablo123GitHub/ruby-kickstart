@@ -19,10 +19,65 @@
 # f.denominator = 100
 # f.to_s               # => "50/100"
 # f.to_f               # => 0.5
-
 class Fraction
+attr_accessor :numerator, :denominator
+
+def initialize (numerator, denominator)
+  @numerator = numerator
+  @denominator = denominator
+end
   def gcd(a,b)
     return a if b == 0
     gcd(b, a%b)
   end
-end
+
+  def to_s
+    "#{numerator}/#{denominator}"
+  end
+
+  def to_f
+   return numerator.to_f/denominator.to_f
+  end
+
+  def lowest
+    divisor = gcd(numerator, denominator)
+    Fraction.new(numerator/divisor, denominator/divisor)
+  end
+  end
+
+#   def lowest
+#     divNumArr = []
+#     divDenArr = []
+
+#     1.upto(numerator) {|x|
+#     divNumArr << x if numerator % x === 0
+#     }
+#     1.upto(denominator) {|x|
+#     divDenArr << x if denominator % x === 0
+#     }
+
+#     divNumArr.sort! do |a,b|
+#       b <=> a
+#     end
+
+#     divDenArr.sort! do |a,b|
+#       b <=> a
+#     end
+
+# maxDivider = 0
+
+# if (divNumArr.max > divDenArr.max)
+#     divDenArr.each do |number|
+# maxDivider = number if  divNumArr.include?(number)
+# break if maxDivider != 0
+# end
+# else
+#   divNumArr.each do |number|
+#     puts divDenArr.include?(number)
+# maxDivider = number if  divDenArr.include?(number)
+# break if maxDivider != 0
+# end
+# end
+#   self.numerator = numerator/maxDivider
+#   self.denominator = denominator/maxDivider
+#   end
