@@ -3,3 +3,14 @@
 #
 # reverse_map(1, 2, 3) { |i| i * 2 }      # => [6, 4, 2]
 
+def reverse_map(*num)
+  result = []
+num.to_a.each do |element|
+  
+  result <<( yield element )
+end 
+  result.reverse
+   
+  
+end 
+
