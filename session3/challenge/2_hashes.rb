@@ -8,3 +8,17 @@
 # staircase 4  # => {1 => [], 3 => [2]}
 # staircase 5  # => {1 => [], 3 => [2], 5 =>[2, 4]}
 
+
+def staircase (inputNum)
+  result = Hash.new
+  evenArr = Array.new
+ 0.upto(inputNum) .each do |x|
+   evenArr << x if (x.even? == true && x > 0)
+   result[x]= evenArr if x.even? == false
+    end
+    finalArr = Hash.new
+    result.each do | oddNum, evenNum |
+      finalArr[oddNum] = evenNum.select {|num| num < oddNum }
+      end 
+      finalArr
+end
