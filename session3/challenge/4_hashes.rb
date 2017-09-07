@@ -4,4 +4,19 @@
 #
 # There will be no punctuation in the strings.
 #
-# first_pos "The dog and the cat and the cow" # => {"The" => 0, "dog" => 1, "and" => 2, "the" => 3, "cat" => 4, "cow" => 7}
+# first_pos "The dog and the cat and the cow"
+# => {"The" => 0, "dog" => 1, "and" => 2, "the" => 3, "cat" => 4, "cow" => 7}
+
+
+def first_pos (inputString)
+  newArr = inputString.split(" ")
+  newHash = Hash.new
+
+  newArr.each_with_index do |word, index|
+    newHash[word] = index.to_i if newHash[word] === nil
+
+  end
+
+newHash
+
+end
