@@ -17,3 +17,31 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(*el)
+
+newEl = []
+el.each do |x|
+  x == true ? x : x == false ? x : x.nil? == true ? x = false : x = true
+  newEl << x
+end
+
+definingBool = newEl.shift
+
+result = []
+newEl.each_slice(2) { |a,b| result << [a,b]}
+
+if definingBool == false
+
+result.each_with_index do |arr, index|
+result[index] = (arr[0] == arr[1] )
+end
+
+else
+  result.each_with_index do |arr, index|
+ result[index] =  !(arr[0] == arr[1])
+end
+
+end
+result
+
+end
