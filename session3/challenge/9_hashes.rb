@@ -28,5 +28,27 @@
 # shared [1,2,:c], ['a','b',:c]      # => [{1=>[true, nil], 2=>[true, nil], :c=>[true, true], "a"=>[nil, true], "b"=>[nil, true]}, [:c]]
 # shared [1,2,3], [3,2,1]            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
 
+
 def shared(a, b)
+  hashFor = Hash.new
+
+  a.each do |item|
+    hashFor[item] = (a.include?(item) ? true : nil ), (b.include?(item) ? true : nil  )
+  end
+
+ b.each do |item|
+    hashFor[item] = (a.include?(item) ? true : nil  ), (b.include?(item) ? true : nil )
+  end
+
+
+
+  resultArr = []
+  finalArr = []
+  hashFor.each do |valueNum, valueArr|
+ resultArr << valueNum if valueArr[0] == true && valueArr[1] == true
+
+
+  end
+[hashFor, resultArr]
+
 end
