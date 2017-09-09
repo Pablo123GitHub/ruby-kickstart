@@ -25,12 +25,29 @@
 # artist.age    # => 47
 
 
-class Person
-  attr_accessor :name
+# class Person
+#   attr_accessor :name
+#
+#   def initialize(&initializer)
+#     @initializer = initializer
+#     initializer.call self
+#   end
+#
+#   def reinit
+#     @initializer.call self
+#   end
+# end
 
-  def initialize(&initializer)
-    @initializer = initializer
-    initializer.call self
+
+class Person
+  attr_accessor :name, :age, :quote
+
+  def initialize(options=Hash.new, &initializer)
+    self.name = options[:name]
+    self.age     = options[:age]
+    self.quote   = options[:quote]
+  @initializer = (initializer || Proc.new { |person| }) 
+  reinit
   end
 
   def reinit
