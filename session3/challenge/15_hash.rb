@@ -21,6 +21,7 @@
 # head[:next][:next][:data]   # => 1
 #
 # ===========
+
 #
 # Now that we know what a linked list is, write a function named middle, which takes a linked list,
 # and returns the data halfway down the list.
@@ -38,3 +39,21 @@
 # middle head                        # => 3
 # head = {:data => 6, :next => head}
 # middle head                        # => 3
+
+
+def middle input
+
+(input[:data].to_f/2).ceil
+
+end
+
+
+# def list_size(list)
+#   return 0 unless list
+#   1 + list_size(list[:next])
+# end
+#
+# def middle(list, distance=list_size(list)/2)
+#   return list[:data] if distance == 0
+#   middle list[:next], (distance - 1)
+# end
