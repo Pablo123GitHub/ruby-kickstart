@@ -7,7 +7,8 @@
 # If a block is given , it should use the block to determine what order the elements should be sorted by
 #
 # Rules for spaceship operator (Java calls it compareTo):
-#   given two elements, the proc should return -1 if the first element goes first
+#   given two elements,
+ # the proc should return -1 if the first element goes first
 #   it should return 1 if the second argument goes first
 #   it should return 0 if it doesn't matter which order the elements go
 #
@@ -22,7 +23,8 @@
 #
 # sorting numbers:
 #
-# your_sort [24, 0, 68, 44, 68, 47, 42, 66, 89, 22]  # => [0, 22, 24, 42, 44, 47, 66, 68, 68, 89]
+# your_sort [24, 0, 68, 44, 68, 47, 42, 66, 89, 22]
+# => [0, 22, 24, 42, 44, 47, 66, 68, 68, 89]
 #
 # your_sort [24, 0, 68, 44, 68, 47, 42, 66, 89, 22] do |a, b|
 #   if a < b
@@ -52,5 +54,16 @@
 #   end
 # end       # => ["a", "m", "r", 1, 3, 4, 9, 2.5, 9.0, 25.8]
 
-def your_sort
+def your_sort( array , &orderer )
+  # if it is nil, then it hasn't been set, default to spaceship operator
+  #  for comparison result
+
+  orderer ||= Proc.new { |a, b| a <=> b }
+
+  array.each_index do |index1|
+    array.each_index do |index2|
+      order = orderer.call(array[index1], array[index2])
+      array[index1], array[index2] = array[index2], array[index1] if order < 0
+    end
+  end
 end
