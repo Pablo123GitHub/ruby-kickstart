@@ -13,19 +13,59 @@
 #
 # PROBLEM: same_ends
 # Return true if the group of N numbers at the start and end of the array are the same.
-# For example, with [5, 6, 45, 99, 13, 5, 6], the ends are the same for n=0 and n=2, and false for n=1 and n=3.
+# For example, with [5, 6, 45, 99, 13, 5, 6],
+# the ends are the same for n=0 and n=2, and false for n=1 and n=3.
 # You may assume that n is in the range 0..nums.length inclusive.
 #
+
 # The first parameter will be n, the rest will be the input to look for ends from
 # problem_14 1,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => false
 # problem_14 2,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => true
 # problem_14 3,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => false
 
-def problem_14
+def problem_14(*params)
+  problem = params.pop[:problem] if params.last.is_a? Hash
+  problem ||= :count_clumps
+
+  return count_clumps(*params) if problem == :count_clumps
+  return same_ends(*params)    if problem == :same_ends
 end
 
-def same_ends
+
+# def same_ends( n, *arg)
+#   startChar = []
+#   endChar   = []
+#   num = 0
+#   argLength = arg.length
+#
+#  n.times do |current|
+#   num = arg[current]
+#    startChar << num
+#  end
+#
+#  n.times do |current|
+#    num = arg[argLength-current -1]
+#   endChar << num
+# end
+#  startChar == endChar.reverse
+# end
+
+def same_ends(n, *params)
+  params[0, n] == params[-n, n]
 end
 
-def count_clumps
+def count_clumps (*inputArr)
+
+  result = []
+  flag = false
+  count = 0
+  inputArr.each_index do |x|
+    if (inputArr[x] == inputArr[x+1] && flag == false )
+      flag = true
+      count = count +1
+    end
+    flag = false if  (inputArr[x] != inputArr[x+1] && flag == true )
+  end
+  count
+
 end
