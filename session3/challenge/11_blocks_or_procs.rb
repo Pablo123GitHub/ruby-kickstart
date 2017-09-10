@@ -2,7 +2,8 @@
 # it receives one parameter, which is 5 by default, but can be overridden by the user
 # The parameter determines the size of the Array to initialize
 #
-# If a block is submitted, use that block to initialize each index in the Array (pass it the current index)
+# If a block is submitted, use that block to initialize each index in the Array
+# (pass it the current index)
 #
 # If a block is not submitted, initialize the Array to 100 times the array's index, as a String
 #
@@ -12,7 +13,8 @@
 # HINTS:
 #   Remember that the Array initializer will pass the index being initialized to your block that is doing the initializing
 #   (if you wish to use blocks) Remember that in the block you pass, to Array.new, you can yield to the block the user passed
-#   (if you wish to use procs)  You can place the block you received into the block spot with the ampersand ( ampersand to get it out, and to put it in )
+#   (if you wish to use procs)  You can place the block you received into the block spot with the ampersand
+# ( ampersand to get it out, and to put it in )
 #
 # EXAMPLES:
 #
@@ -30,5 +32,13 @@
 # end
 
 
-def array_init
+def array_init(x=5)
+  newArr = Array.new(x)
+  resultArr = []
+   newArr.each_index do |x|
+   resultArr.push(yield x ) if block_given?
+   resultArr.push((100 * x ).to_s) if !block_given?
+  end
+ resultArr
+
 end
