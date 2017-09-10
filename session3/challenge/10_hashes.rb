@@ -7,7 +7,7 @@
 # all of the complete file paths where each directory is separated by a '/'
 #
 # HINT:
-#   [1,2,3].is_a? Array # => true
+#   [1,2,3].is_a? Array # => true s
 #   [1,2,3].is_a? Hash  # => false
 #   {1=>1}.is_a?  Array # => false
 #   {1=>1}.is_a?  Hash  # => true
@@ -19,15 +19,37 @@
 #
 # EXAMPLES:
 #
-# pathify 'usr' => {'bin' => ['ruby'] }                                                        # => ['/usr/bin/ruby']
-# pathify 'usr' => {'bin' => ['ruby', 'perl'] }                                                # => ['/usr/bin/ruby', '/usr/bin/perl']
-# pathify 'usr' => {'bin' => ['ruby'], 'include' => ['zlib.h'] }                               # => ['/usr/bin/ruby', '/usr/include/zlib.h']
-# pathify 'usr' => {'bin' => ['ruby']}, 'opt' => {'local' => {'bin' => ['sqlite3', 'rsync']} } # => ['/usr/bin/ruby', 'opt/local/bin/sqlite3', 'opt/local/bin/rsync']
-# pathify                                                                                      # => []
+# pathify 'usr' => {'bin' => ['ruby'] }
+ # => ['/usr/bin/ruby']
+
+# pathify 'usr' => {'bin' => ['ruby', 'perl'] }
+ # => ['/usr/bin/ruby', '/usr/bin/perl']
+
+# pathify 'usr' => {'bin' => ['ruby'], 'include' => ['zlib.h'] }
+# => ['/usr/bin/ruby', '/usr/include/zlib.h']
+
+# pathify 'usr' => {'bin' => ['ruby']}, 'opt' => {'local' => {'bin' => ['sqlite3', 'rsync']} }
+# => ['/usr/bin/ruby', 'opt/local/bin/sqlite3', 'opt/local/bin/rsync']
+
+# pathify
+# => []
+
 #
 #
 # create it from scratch :)
 
 
-def pathify
-end
+def pathify(paths=Hash.new)
+  # base step
+  return paths.map{|path| '/' + path } if paths.is_a? Array
+  to_return = []
+  # recursive step
+  paths.each do |parent_dir, child_path|
+    parent_dir = '/' + parent_dir
+    child_array_with_slashes = pathify child_path
+    child_array_with_slashes.each do |x|
+      to_return << (parent_dir + x )
+    end
+  end
+  to_return
+end 

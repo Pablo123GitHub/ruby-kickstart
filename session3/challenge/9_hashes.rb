@@ -40,10 +40,7 @@ def shared(a, b)
     hashFor[item] = (a.include?(item) ? true : nil  ), (b.include?(item) ? true : nil )
   end
 
-
-
   resultArr = []
-  finalArr = []
   hashFor.each do |valueNum, valueArr|
  resultArr << valueNum if valueArr[0] == true && valueArr[1] == true
 
